@@ -1,10 +1,16 @@
+global:
+  smtp_smarthost: smtp.gmail.com:587
+  smtp_from: data_schedule@pixocial.com
+  smtp_auth_username: data_schedule@pixocial.com
+  smtp_auth_identity: data_schedule@pixocial.com
+  smtp_auth_password: xxx
+
 route:
-  receiver: 'slack'
+  group_by: ['alertname']
+  receiver: 'default-receiver'
 
 receivers:
-  - name: 'slack'
-#       slack_configs:
-#           - send_resolved: true
-#             username: '<username>'
-#             channel: '#<channel-name>'
-#             api_url: '<incomming-webhook-url>'
+  - name: default-receiver
+    email_configs:
+      - to: junzhe.wang@pixocial.com
+        send_resolved: true
